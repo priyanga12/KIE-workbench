@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="JBPM/jbpm"/>
+	<classpathentry kind="lib" path="C:/Users/priyanga.v/Downloads/junit-4.3.jar/junit-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/priyanga.v/Downloads/drools-api-5.1.0.M1.jar/drools-api-5.1.0.M1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/priyanga.v/Downloads/drools-core-5.5.0.Final.jar/drools-core-5.5.0.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/priyanga.v/Downloads/sampleHTFormVariables.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

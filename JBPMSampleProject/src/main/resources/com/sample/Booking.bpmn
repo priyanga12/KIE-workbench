@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_income" structureRef="Integer" />
+  <itemDefinition id="null" />
+
+  <process processType="Private" isExecutable="true" id="happiest.ruleflow" name="Hello World" >
+
+    <extensionElements>
+     <tns:import name="com.sample.Passenger" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="income" itemSubjectRef="null"/>
+
+    <!-- nodes -->
+    <endEvent id="6d1818a3-2efb-4659-919c-f128f68e650c" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <startEvent id="_1"  isInterrupting="true">
+    </startEvent>
+    <exclusiveGateway id="dacc59b9-e973-44fb-abbf-9b7432f93d44" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <exclusiveGateway id="b90d2a19-6c71-46e5-acd0-badac3dfc15e" name="Gateway" gatewayDirection="Diverging" >
+    </exclusiveGateway>
+    <scriptTask id="914eb1b6-caba-4f80-82dc-2c23d59415d0" name="Flight" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("In Flight Journey");
+</script>
+    </scriptTask>
+    <scriptTask id="573fa87b-4d1c-4c07-847b-807e5152eec7" name="Train" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("In Train Journey");</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="dacc59b9-e973-44fb-abbf-9b7432f93d44-6d1818a3-2efb-4659-919c-f128f68e650c" sourceRef="dacc59b9-e973-44fb-abbf-9b7432f93d44" targetRef="6d1818a3-2efb-4659-919c-f128f68e650c" />
+    <sequenceFlow id="573fa87b-4d1c-4c07-847b-807e5152eec7-dacc59b9-e973-44fb-abbf-9b7432f93d44" sourceRef="573fa87b-4d1c-4c07-847b-807e5152eec7" targetRef="dacc59b9-e973-44fb-abbf-9b7432f93d44" />
+    <sequenceFlow id="914eb1b6-caba-4f80-82dc-2c23d59415d0-dacc59b9-e973-44fb-abbf-9b7432f93d44" sourceRef="914eb1b6-caba-4f80-82dc-2c23d59415d0" targetRef="dacc59b9-e973-44fb-abbf-9b7432f93d44" />
+    <sequenceFlow id="_1-b90d2a19-6c71-46e5-acd0-badac3dfc15e" sourceRef="_1" targetRef="b90d2a19-6c71-46e5-acd0-badac3dfc15e" />
+    <sequenceFlow id="b90d2a19-6c71-46e5-acd0-badac3dfc15e-914eb1b6-caba-4f80-82dc-2c23d59415d0" sourceRef="b90d2a19-6c71-46e5-acd0-badac3dfc15e" targetRef="914eb1b6-caba-4f80-82dc-2c23d59415d0" name="Flight" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return income&gt;1000;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="b90d2a19-6c71-46e5-acd0-badac3dfc15e-573fa87b-4d1c-4c07-847b-807e5152eec7" sourceRef="b90d2a19-6c71-46e5-acd0-badac3dfc15e" targetRef="573fa87b-4d1c-4c07-847b-807e5152eec7" name="Train" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return income&lt;1000;</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="happiest.ruleflow" >
+      <bpmndi:BPMNShape bpmnElement="6d1818a3-2efb-4659-919c-f128f68e650c" >
+        <dc:Bounds x="455" y="91" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="24" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="dacc59b9-e973-44fb-abbf-9b7432f93d44" >
+        <dc:Bounds x="359" y="81" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="b90d2a19-6c71-46e5-acd0-badac3dfc15e" >
+        <dc:Bounds x="103" y="73" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="914eb1b6-caba-4f80-82dc-2c23d59415d0" >
+        <dc:Bounds x="207" y="147" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="573fa87b-4d1c-4c07-847b-807e5152eec7" >
+        <dc:Bounds x="203" y="28" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="dacc59b9-e973-44fb-abbf-9b7432f93d44-6d1818a3-2efb-4659-919c-f128f68e650c" >
+        <di:waypoint x="383" y="105" />
+        <di:waypoint x="479" y="115" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="573fa87b-4d1c-4c07-847b-807e5152eec7-dacc59b9-e973-44fb-abbf-9b7432f93d44" >
+        <di:waypoint x="243" y="52" />
+        <di:waypoint x="383" y="105" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="914eb1b6-caba-4f80-82dc-2c23d59415d0-dacc59b9-e973-44fb-abbf-9b7432f93d44" >
+        <di:waypoint x="247" y="171" />
+        <di:waypoint x="383" y="105" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-b90d2a19-6c71-46e5-acd0-badac3dfc15e" >
+        <di:waypoint x="48" y="40" />
+        <di:waypoint x="127" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="b90d2a19-6c71-46e5-acd0-badac3dfc15e-914eb1b6-caba-4f80-82dc-2c23d59415d0" >
+        <di:waypoint x="127" y="97" />
+        <di:waypoint x="247" y="171" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="b90d2a19-6c71-46e5-acd0-badac3dfc15e-573fa87b-4d1c-4c07-847b-807e5152eec7" >
+        <di:waypoint x="127" y="97" />
+        <di:waypoint x="243" y="52" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
